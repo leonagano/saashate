@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 interface Props {
   saasId: string
@@ -43,6 +44,7 @@ function StampCircle({ count, animKey }: { count: number; animKey: number }) {
 }
 
 export default function HateButton({ saasId, saasSlug, initialCount }: Props) {
+  const router = useRouter()
   const [count, setCount] = useState(initialCount)
   const [state, setState] = useState<State>('idle')
   const [stampKey, setStampKey] = useState(0)
@@ -75,6 +77,7 @@ export default function HateButton({ saasId, saasSlug, initialCount }: Props) {
         setCount(c => c + 1)
         setStampKey(k => k + 1)
         setState('voted')
+        router.refresh()
       } else if (res.status === 409) {
         // Server says already voted — sync localStorage and show done state
         markVoted(saasSlug)
@@ -105,6 +108,7 @@ export default function HateButton({ saasId, saasSlug, initialCount }: Props) {
     })
     setSubmitted(true)
     setState('done')
+    router.refresh()
   }
 
   if (state === 'done') {
