@@ -24,15 +24,15 @@ export const MOCK_SAAS: SaasWithCount[] = [
 ]
 
 export const MOCK_COMPLAINTS: Complaint[] = [
-  { id: 'c1', saas_id: '1', saas_name: 'Salesforce', saas_slug: 'salesforce', reason: 'Pricing doubled overnight with zero notice.', x_handle: '@pissed_at_crm', profile_url: null, created_at: '2026-05-07T10:00:00Z' },
+  { id: 'c1', saas_id: '1', saas_name: 'Salesforce', saas_slug: 'salesforce', reason: 'Pricing doubled overnight with zero notice.', x_handle: 'pissed_at_crm', profile_url: null, created_at: '2026-05-07T10:00:00Z' },
   { id: 'c2', saas_id: '3', saas_name: 'Jira', saas_slug: 'jira', reason: 'Every sprint I lose 2 hours to bugs in Jira itself.', x_handle: null, profile_url: null, created_at: '2026-05-07T09:55:00Z' },
-  { id: 'c3', saas_id: '2', saas_name: 'NetSuite', saas_slug: 'netsuite', reason: 'Support disappeared after onboarding. Ghost town.', x_handle: '@cfoto', profile_url: 'https://carlafoto.com', created_at: '2026-05-07T09:50:00Z' },
+  { id: 'c3', saas_id: '2', saas_name: 'NetSuite', saas_slug: 'netsuite', reason: 'Support disappeared after onboarding. Ghost town.', x_handle: 'cfoto', profile_url: 'https://carlafoto.com', created_at: '2026-05-07T09:50:00Z' },
   { id: 'c4', saas_id: '5', saas_name: 'HubSpot', saas_slug: 'hubspot', reason: 'Impossible to cancel without calling sales three times.', x_handle: null, profile_url: null, created_at: '2026-05-07T09:48:00Z' },
-  { id: 'c5', saas_id: '7', saas_name: 'Workday', saas_slug: 'workday', reason: 'Feels like enterprise punishment designed in 2009.', x_handle: '@marktweet', profile_url: null, created_at: '2026-05-07T09:45:00Z' },
+  { id: 'c5', saas_id: '7', saas_name: 'Workday', saas_slug: 'workday', reason: 'Feels like enterprise punishment designed in 2009.', x_handle: 'marktweet', profile_url: null, created_at: '2026-05-07T09:45:00Z' },
   { id: 'c6', saas_id: '4', saas_name: 'SAP', saas_slug: 'sap', reason: 'Every update makes it slower and breaks something.', x_handle: null, profile_url: null, created_at: '2026-05-07T09:40:00Z' },
   { id: 'c7', saas_id: '1', saas_name: 'Salesforce', saas_slug: 'salesforce', reason: 'Slow and bloated. Takes 10 clicks to log a call.', x_handle: null, profile_url: 'https://devrant.io', created_at: '2026-05-07T09:35:00Z' },
   { id: 'c8', saas_id: '9', saas_name: 'Slack', saas_slug: 'slack', reason: 'Pricing became insane for what is essentially a chat app.', x_handle: null, profile_url: null, created_at: '2026-05-07T09:30:00Z' },
-  { id: 'c9', saas_id: '10', saas_name: 'Notion', saas_slug: 'notion', reason: 'Performance is tragic. My brain works faster than their editor.', x_handle: '@notionhater', profile_url: null, created_at: '2026-05-07T09:25:00Z' },
+  { id: 'c9', saas_id: '10', saas_name: 'Notion', saas_slug: 'notion', reason: 'Performance is tragic. My brain works faster than their editor.', x_handle: 'notionhater', profile_url: null, created_at: '2026-05-07T09:25:00Z' },
   { id: 'c10', saas_id: '3', saas_name: 'Jira', saas_slug: 'jira', reason: 'Designed for project managers who hate developers.', x_handle: null, profile_url: null, created_at: '2026-05-07T09:20:00Z' },
   { id: 'c11', saas_id: '8', saas_name: 'ServiceNow', saas_slug: 'servicenow', reason: 'UI from 2011. Nothing works intuitively.', x_handle: null, profile_url: null, created_at: '2026-05-07T09:15:00Z' },
   { id: 'c12', saas_id: '6', saas_name: 'Zoom', saas_slug: 'zoom', reason: 'Audio randomly cuts out in every third meeting.', x_handle: null, profile_url: null, created_at: '2026-05-07T09:10:00Z' },

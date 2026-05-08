@@ -1,6 +1,12 @@
+'use client'
+
+import { useState } from 'react'
 import Link from 'next/link'
+import ReportModal from '@/components/ReportModal'
 
 export default function Navbar() {
+  const [showModal, setShowModal] = useState(false)
+
   return (
     <>
       <div className="h-1.5 bg-rage w-full" />
@@ -14,15 +20,17 @@ export default function Navbar() {
             <Link href="/" className="text-sm font-semibold text-ink/50 hover:text-ink transition-colors">
               Leaderboard
             </Link>
-            <Link
-              href="/"
-              className="text-xs font-bold tracking-wider text-paper bg-ink px-4 py-2.5 hover:bg-rage transition-colors border-2 border-ink uppercase"
+            <button
+              onClick={() => setShowModal(true)}
+              className="text-xs font-bold tracking-wider text-paper bg-ink px-4 py-2.5 hover:bg-rage transition-colors border-2 border-ink uppercase cursor-pointer"
             >
               Report a SaaS →
-            </Link>
+            </button>
           </nav>
         </div>
       </header>
+
+      {showModal && <ReportModal onClose={() => setShowModal(false)} />}
     </>
   )
 }

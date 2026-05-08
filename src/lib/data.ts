@@ -80,7 +80,7 @@ export async function getRecentComplaints(): Promise<Complaint[]> {
 
   const { data } = await supabase
     .from('hate_votes')
-    .select('id, saas_id, reason, created_at, saas_products(name, slug)')
+    .select('id, saas_id, reason, x_handle, profile_url, created_at, saas_products(name, slug)')
     .not('reason', 'is', null)
     .order('created_at', { ascending: false })
     .limit(10)
@@ -95,6 +95,8 @@ export async function getRecentComplaints(): Promise<Complaint[]> {
       saas_name: product?.name ?? '',
       saas_slug: product?.slug ?? '',
       reason: row.reason,
+      x_handle: row.x_handle ?? null,
+      profile_url: row.profile_url ?? null,
       created_at: row.created_at,
     }
   })
@@ -133,7 +135,7 @@ export async function getComplaintsForSaas(saasId: string): Promise<Complaint[]>
 
   const { data } = await supabase
     .from('hate_votes')
-    .select('id, saas_id, reason, created_at, saas_products(name, slug)')
+    .select('id, saas_id, reason, x_handle, profile_url, created_at, saas_products(name, slug)')
     .eq('saas_id', saasId)
     .not('reason', 'is', null)
     .order('created_at', { ascending: false })
@@ -149,6 +151,8 @@ export async function getComplaintsForSaas(saasId: string): Promise<Complaint[]>
       saas_name: product?.name ?? '',
       saas_slug: product?.slug ?? '',
       reason: row.reason,
+      x_handle: row.x_handle ?? null,
+      profile_url: row.profile_url ?? null,
       created_at: row.created_at,
     }
   })

@@ -25,44 +25,56 @@ export function ComplaintCard({ complaint, showSaas = true }: { complaint: Compl
       <div className="px-5 py-4 space-y-3">
         <p className="font-mono text-sm text-ink/85 leading-relaxed">&ldquo;{complaint.reason}&rdquo;</p>
 
-        <div className="flex items-center justify-between flex-wrap gap-2">
-          <div className="flex items-center gap-3 text-xs font-mono text-ink/35 flex-wrap">
-            {showSaas && complaint.saas_name && (
-              <>
-                <Link href={`/${complaint.saas_slug}`} className="hover:text-rage transition-colors font-semibold text-ink/50">
-                  {complaint.saas_name}
-                </Link>
-                <span>·</span>
-              </>
-            )}
-            <span>{timeAgo(complaint.created_at)}</span>
-          </div>
+        <div className="flex items-center gap-3 text-xs font-mono flex-wrap">
+          {/* Author — identity or anonymous */}
+          {complaint.x_handle ? (
+            <a
+              href={`https://x.com/${complaint.x_handle}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-rage font-bold hover:underline"
+            >
+              @{complaint.x_handle}
+            </a>
+          ) : complaint.profile_url ? (
+            <a
+              href={complaint.profile_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-rage font-bold hover:underline"
+            >
+              {safeHostname(complaint.profile_url)} ↗
+            </a>
+          ) : (
+            <span className="text-ink/25 tracking-wider">ANONYMOUS</span>
+          )}
 
-          <div className="flex items-center gap-2">
-            {complaint.x_handle && (
-              <a
-                href={`https://x.com/${complaint.x_handle}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-mono text-xs text-rage hover:underline"
-              >
-                @{complaint.x_handle}
-              </a>
-            )}
-            {complaint.profile_url && (
+          {/* Extra identity link if both are present */}
+          {complaint.x_handle && complaint.profile_url && (
+            <>
+              <span className="text-ink/20">·</span>
               <a
                 href={complaint.profile_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-mono text-xs text-rage hover:underline"
+                className="text-ink/40 hover:text-rage hover:underline transition-colors"
               >
                 {safeHostname(complaint.profile_url)} ↗
               </a>
-            )}
-            {!hasIdentity && (
-              <span className="font-mono text-[10px] text-ink/25 tracking-wider">ANONYMOUS</span>
-            )}
-          </div>
+            </>
+          )}
+
+          <span className="text-ink/20">·</span>
+          <span className="text-ink/35">{timeAgo(complaint.created_at)}</span>
+
+          {showSaas && complaint.saas_name && (
+            <>
+              <span className="text-ink/20">·</span>
+              <Link href={`/${complaint.saas_slug}`} className="text-ink/40 hover:text-rage transition-colors font-semibold">
+                {complaint.saas_name}
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </div>
