@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS saas_products (
 CREATE TABLE IF NOT EXISTS hate_votes (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   saas_id UUID REFERENCES saas_products(id) ON DELETE CASCADE NOT NULL,
+  ip_hash TEXT CHECK (char_length(ip_hash) <= 32),
   reason TEXT CHECK (char_length(reason) <= 140),
   x_handle TEXT CHECK (char_length(x_handle) <= 50),
   profile_url TEXT CHECK (char_length(profile_url) <= 200),
@@ -23,6 +24,9 @@ CREATE TABLE IF NOT EXISTS hate_votes (
 );
 
 CREATE INDEX IF NOT EXISTS idx_hate_votes_saas_id ON hate_votes(saas_id);
+CREATE INDEX IF NOT EXISTS idx_hate_votes_ip_hash ON hate_votes(ip_hash);
+-- Enforce one vote per IP per SaaS at the DB level
+CREATE UNIQUE INDEX IF NOT EXISTS idx_hate_votes_ip_saas ON hate_votes(ip_hash, saas_id) WHERE ip_hash IS NOT NULL;
 CREATE INDEX IF NOT EXISTS idx_hate_votes_created_at ON hate_votes(created_at);
 
 -- Enable Row Level Security

@@ -75,6 +75,10 @@ export default function HateButton({ saasId, saasSlug, initialCount }: Props) {
         setCount(c => c + 1)
         setStampKey(k => k + 1)
         setState('voted')
+      } else if (res.status === 409) {
+        // Server says already voted — sync localStorage and show done state
+        markVoted(saasSlug)
+        setState('done')
       } else {
         setState('idle')
       }
